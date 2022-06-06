@@ -1,19 +1,31 @@
 <script lang="ts">
 	export const prerender = true;
-	import {pokemon} from "../stores/unlock-rules"; 
-	import PokemanCard from '../components/pokemanCard.svelte';
-	let serachTerm = ""
-	let filteredPokemon = [];
+	import { JSONEditor } from 'svelte-jsoneditor'
 
-	$: {
-		// console.log(serachTerm)
-		if(serachTerm) {
-			// serach Pokemon
-			filteredPokemon = $pokemon.filter(pokeman=> pokeman.name.toLowerCase().includes(serachTerm))
-		} else {
-			filteredPokemon = [...$pokemon];
-		}
-	}
+	 let content:any = {
+    text: undefined, // used when in code mode
+    json: {
+      greeting: 'Please paste your Json here'
+    }
+  }
+
+	// $: {
+	// 	if(content) {
+	// 		content = content
+	// 		console.log("content", content);
+	// 	} else {
+	// 		content = {...content};
+	// 	}
+	// }
+
+function handleChange(updatedContent: {
+text: undefined; // used when in code mode
+json: { greeting: string; };
+}, previousContent: any, patchResult: any) {
+    // content is an object { json: JSONData } | { text: string }
+    console.log('onChange: ', updatedContent, previousContent, patchResult)
+    content = updatedContent
+  }
 </script>
 
 
@@ -23,17 +35,11 @@
 </svelte:head>
 
 <section>
-	<h1 class="text-2xl text-center my-8 uppercase">
-		<div class="welcome">
-           Welcome  To Unlock Rules App
-		</div>
-		
+	<h1 class="text-1xl text-center my-1 uppercase">
+	 Welcome to UnlockRules App
 	</h1>
-	<input class="w-full rounded-md text-lg p-4 border-2 border-gray-200" type="text" placeholder="Search Pkemon"
-	bind:value={serachTerm}>
-	<div class="py-4 grid gap-4 md:grid-cols-2 grid-cols-1">
-	{#each filteredPokemon as pokeman}
-	 <PokemanCard pokeman ={pokeman}></PokemanCard>
-	{/each}
+	<div class="py-4 grid gap-4 md:grid-cols-1 grid-cols-1">
+		<!-- <JSONEditor bind:content/> -->
+		<JSONEditor {content} onChange="{handleChange}"  />
 	</div>
 </section>
