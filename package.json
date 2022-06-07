@@ -35,6 +35,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"browserify": "^17.0.0",
+		"json-to-ts": "^1.7.0",
 		"svelte-jsoneditor": "^0.3.58"
 	}
 }
