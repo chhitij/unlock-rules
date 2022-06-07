@@ -10,7 +10,7 @@
     }
   }
 
-	let finalModel:any;
+	let finalModel = '';
 
 	const finalModelBuilding = 'hello';
 
@@ -23,6 +23,17 @@
 	// 	}
 	// }
 
+
+	$: {
+		if(content) {
+			finalModel = finalModel
+			console.log("finalModel", finalModel);
+		} else {
+			finalModel = finalModel;
+		}
+	}
+
+
 function handleChange(updatedContent: {
 text: undefined; // used when in code mode
 json: { greeting: string; };
@@ -31,9 +42,10 @@ json: { greeting: string; };
     console.log('onChange: ', updatedContent, previousContent, patchResult)
     content = updatedContent
 		console.log(content.json,'content.json');
-	 finalModel = 	JsonToTS.default(content.json).forEach( typeInterface => {
-  console.log(typeInterface)
-})
+	   JsonToTS.default(content.json).forEach( typeInterface => {
+      console.log(typeInterface)
+			finalModel = typeInterface
+    })
   }
 </script>
 
@@ -51,5 +63,10 @@ json: { greeting: string; };
 	<div class="py-4 grid gap-4 md:grid-cols-1 grid-cols-1">
 		<!-- <JSONEditor bind:content/> -->
 		<JSONEditor {content} onChange="{handleChange}"  />
+	</div>
+
+	<div class="py-4 grid gap-4 md:grid-cols-1 grid-cols-1">
+		<!-- <JSONEditor bind:content/> -->
+	 	<code>{finalModel}</code>
 	</div>
 </section>
