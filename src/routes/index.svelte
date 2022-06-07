@@ -12,8 +12,6 @@
 
 	let finalModel = '';
 
-	const finalModelBuilding = 'hello';
-
 	// $: {
 	// 	if(content) {
 	// 		content = content
