@@ -41,3 +41,8 @@ You can preview the production build with `npm run preview`.
 ---
 ![image](https://user-images.githubusercontent.com/23649693/172090949-87500bd9-0765-4a2d-a74c-b5deec4c7a66.png)
 
+# TS MODEL BUILDING 
+---
+![image](https://user-images.githubusercontent.com/23649693/172452342-b58efe85-afbb-4c74-bd5e-eaebb30450e0.png)
+
+
